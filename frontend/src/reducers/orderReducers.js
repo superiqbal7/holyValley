@@ -64,3 +64,28 @@ export const orderPayReducer = (state = {}, action) => {
       return state
   }
 }
+
+export const orderListUserReducer = (state = { orders: []}, action) => {
+  switch (action.type) {
+    case orderConstants.ORDER_LIST_USER_REQUEST:
+      return {
+        loading: true
+      }
+    case orderConstants.ORDER_LIST_USER_SUCCESS:
+      return {
+        loading: false,
+        orders: action.payload
+      }
+    case orderConstants.ORDER_LIST_USER_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case orderConstants.ORDER_LIST_USER_RESET:
+      return { 
+        orders: [] 
+      }
+    default:
+      return state
+  }
+}
