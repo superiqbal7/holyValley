@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as userConstants from "../constants/userConstants"
+import * as orderConstants from '../constants/orderConstants'
 
 export const login = (email, password) => async(dispatch) => {
   try {
@@ -37,6 +38,12 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')
   dispatch({
     type: userConstants.USER_LOGOUT
+  })
+  dispatch({
+    type: userConstants.USER_DETAILS_RESET
+  })
+  dispatch({
+    type: orderConstants.ORDER_LIST_USER_RESET
   })
 }
 
