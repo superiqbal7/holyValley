@@ -1,5 +1,6 @@
 import * as userConstants from '../constants/userConstants.js'
 
+
 export const userLoginReducer = (state = { }, action) => {
   switch (action.type) {
     case userConstants.USER_LOGIN_REQUEST:
@@ -36,6 +37,10 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { loading: false, user: action.payload }
     case userConstants.USER_DETAILS_FAIL:
       return { loading: false, error: action.payload }
+    case userConstants.USER_DETAILS_RESET:
+      return { 
+        user: {}
+      }
     default:
       return state
   }
