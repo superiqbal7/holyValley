@@ -107,3 +107,43 @@ export const payOrder = (orderId, paymentResult) => async (
     })
   }
 }
+
+export const listUserOrders = () => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: orderConstants.ORDER_LIST_USER_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(
+      `/api/orders/myorders`,
+      config
+    )
+
+    dispatch({
+      type: orderConstants.ORDER_LIST_USER_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    dispatch({
+      type: orderConstants.ORDER_LIST_USER_FAIL,
+      payload: message,
+    })
+  }
+}
