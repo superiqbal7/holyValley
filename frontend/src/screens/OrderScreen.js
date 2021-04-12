@@ -29,6 +29,11 @@ const OrderScreen = ({ match }) => {
     }
     order.itemsPrice = addDecimals(order.orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0))
   }
+
+  // useEffect(() => {
+  //   dispatch({ type: orderConstants.ORDER_PAY_RESET })
+  //   dispatch(getOrderDetails(orderId))
+  // })
   
 
   useEffect(() => {
@@ -43,8 +48,10 @@ const OrderScreen = ({ match }) => {
       }
       document.body.appendChild(script)
     }
+    //dispatch({ type: orderConstants.ORDER_PAY_RESET })
+    //dispatch(getOrderDetails(orderId))
 
-    if(!order || successPay){
+    if(!order || successPay || order._id !== orderId){
       dispatch({ type: orderConstants.ORDER_PAY_RESET})
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
