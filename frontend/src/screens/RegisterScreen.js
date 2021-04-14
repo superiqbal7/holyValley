@@ -72,7 +72,7 @@ const RegisterScreen = ({ location, history }) => {
           >
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId='email'>
+        <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
@@ -83,7 +83,7 @@ const RegisterScreen = ({ location, history }) => {
           </Form.Control>
         </Form.Group>
 
-        <Form.Group controlId='email'>
+        <Form.Group controlId='confirmPassword'>
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type='password'
