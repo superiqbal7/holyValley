@@ -5,7 +5,8 @@ import {
   getProductById, 
   deleteProduct,
   createProduct,
-  updateProduct
+  updateProduct,
+  createProductReview
 } from '../controller/productController.js'
 
 const router = express.Router()
@@ -21,6 +22,9 @@ router
   .get(getProductById)
   .delete(protect, isAdmin, deleteProduct)
   .put(protect, isAdmin, updateProduct)
+
+router
+  .route('/:id/reviews').post(protect, createProductReview)
 
 
 export default router
