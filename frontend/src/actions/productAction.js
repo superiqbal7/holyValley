@@ -1,14 +1,14 @@
 import axios from 'axios'
 import * as productConstants from '../constants/productConstants.js'
 
-export const listProduct = () => async (dispatch) => {
+export const listProduct = (keyword = '') => async (dispatch) => {
   try {
     dispatch(
       {
         type: productConstants.PRODUCT_LIST_REQUEST
       }
     )
-    const { data } = await axios.get('/api/products')
+    const { data } = await axios.get(`/api/products?keyword=${keyword}`)
 
     dispatch(
       {
