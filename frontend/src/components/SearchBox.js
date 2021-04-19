@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
 const SearchBox = ({ history }) => {
@@ -12,6 +12,13 @@ const SearchBox = ({ history }) => {
       history.push('/')
     }
   }
+  useEffect(() => {
+    if (keyword.trim()) {
+      history.push(`/search/${keyword}`)
+    } else {
+      history.push('/')
+    }
+  }, [keyword])
 
   return (
     <Form onSubmit={submitHandler} inline>
