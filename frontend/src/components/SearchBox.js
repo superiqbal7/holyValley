@@ -18,7 +18,7 @@ const SearchBox = ({ history }) => {
     } else {
       history.push('/')
     }
-  }, [keyword])
+  }, [keyword, history])
 
   return (
     <Form onSubmit={submitHandler} inline>
