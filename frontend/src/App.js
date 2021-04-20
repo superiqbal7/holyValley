@@ -22,10 +22,18 @@ const App = () => {
           <Route path='/cart/:id?' component={screens.CartScreen} />
           <Route path='/admin/userlist' component={screens.UserListScreen} />
           <Route path='/admin/user/:id/edit' component={screens.UserEditScreen} />
-          <Route path='/admin/productlist' component={screens.ProductListScreen} />
+          <Route path='/admin/productlist' component={screens.ProductListScreen} exact/>
+          <Route path='/admin/productlist/:pageNumber' component={screens.ProductListScreen} exact/>
           <Route path='/admin/product/:id/edit' component={screens.ProductEditScreen} />
           <Route path='/admin/orderlist' component={screens.OrderListScreen} />
+
           <Route path='/search/:keyword' component={screens.HomeScreen} exact />
+          <Route path='/page/:pageNumber' component={screens.HomeScreen} exact />
+          <Route
+            path='/search/:keyword/page/:pageNumber'
+            component={screens.HomeScreen}
+            exact
+          />
           <Route path='/' component={screens.HomeScreen} exact />
         </Container>
       </main>
