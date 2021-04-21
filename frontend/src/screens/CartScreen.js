@@ -50,7 +50,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>
-                    ${item.price}
+                    ৳{item.price}
                   </Col>
                   <Col md={2}>
                     <Form.Control
@@ -92,7 +92,7 @@ const CartScreen = ({ match, location, history }) => {
               <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.quantity, 0)}) Items
               </h2>
-              ${cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
+              ৳{cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>

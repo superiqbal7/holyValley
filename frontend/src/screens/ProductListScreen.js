@@ -94,7 +94,7 @@ const ProductListScreen = ({ history, match }) => {
 
                   <td>{product.name}</td>
 
-                  <td>${product.price}</td>
+                  <td>৳{product.price}</td>
 
                   <td>
                     {product.category}
