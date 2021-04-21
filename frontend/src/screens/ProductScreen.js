@@ -7,6 +7,7 @@ import { listProductDetails, createProductReview } from '../actions/productActio
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import * as productConstants from '../constants/productConstants.js'
+import Meta from '../components/Meta'
 
 const ProductScreen = ({ history, match }) => {
   const [quantity, setQuantity] = useState(1)
@@ -65,6 +66,7 @@ const ProductScreen = ({ history, match }) => {
         error ?
           <Message variant='danger'>{error}</Message> : (
             <>
+              <Meta title={product.name} />
             <Row>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />
