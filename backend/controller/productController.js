@@ -81,7 +81,7 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const { name, price, description, image, brand, category, countInStock} = req.body
+  const { name, price, description, image, brand, category, countInStock, isTopListed} = req.body
 
   const product = await Product.findById(req.params.id)
 
@@ -93,6 +93,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.brand = brand
     product.category = category
     product.countInStock = countInStock
+    product.isTopListed = isTopListed
 
     const updatedProduct = await product.save()
     res.json(updatedProduct)
@@ -145,7 +146,8 @@ const createProductReview = asyncHandler(async (req, res) => {
 // @route   GET /api/products/top
 // @access  Public
 const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  const products = await Product.find({ isTopListed: true })
+  console.log(products);
 
   res.json(products)
 })

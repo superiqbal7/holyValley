@@ -59,6 +59,13 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
     default: 0,
+  },
+  isTopListed: {
+    type: Boolean,
+    default: false,
+  },
+  quantity: {
+    type: String,
   }
 }, {
   timestamps: true
