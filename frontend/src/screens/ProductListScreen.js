@@ -15,6 +15,7 @@ const ProductListScreen = ({ history, match }) => {
 
   const productList = useSelector(state => state.productList)
   const { loading, error, products, page, pages} = productList
+  console.log(products);
 
   const productDelete = useSelector(state => state.productDelete)
   const { 
@@ -46,6 +47,8 @@ const ProductListScreen = ({ history, match }) => {
     } else {
       dispatch(listProduct('', pageNumber))
     }
+
+    console.log(products);
 
   }, [dispatch, history, userInfo, successDelete, successCreate, createProduct, pageNumber])
 
@@ -101,7 +104,7 @@ const ProductListScreen = ({ history, match }) => {
                   </td>
 
                   <td>
-                    {product.brand}
+                    {product.isTopListed}
                   </td>
 
                   <td>

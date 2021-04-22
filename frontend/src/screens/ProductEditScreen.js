@@ -28,13 +28,14 @@ const ProductEditScreen = ({ match, history }) => {
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
-  const productUpdate = useSelector((state) => state.productDetails)
+  const productUpdate = useSelector((state) => state.productUpdate)
   const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate
 
   useEffect(() => {
     if(successUpdate){
       dispatch({ type: productConstants.PRODUCT_UPDATE_RESET})
-      history.push('/admin/productslist')
+      dispatch(listProductDetails(match.params.id))
+      history.push('/admin/productlist')
     } else {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))

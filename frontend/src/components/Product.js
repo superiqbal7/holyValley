@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import Rating from './Rating'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const Product = ({ product }) => {
+const Product = ({ product, history }) => {
+  const [quantity, setQuantity] = useState(1)
+
+  const dispatch = useDispatch()
+
+  // useEffect(() => {
+
+  // }, [dispatch, product._id, quantity])
+  
+  // const addToCartHandler = () => {
+  //   //history.push(`/cart/${product.id}?quantity=${quantity}`)
+  //   if (product._id) {
+  //     dispatch(addToCart(product._id, quantity))
+  //   }
+  // }
+
   return (
     <Card className='my-3 p-2 rounded'>
       <Link to={`/product/${product._id}`}>
@@ -23,7 +40,16 @@ const Product = ({ product }) => {
             text={`${product.numReviews} reviews`} 
           />
         </Card.Text>
-        <Card.Text as='h3'>৳{product.price}</Card.Text>
+        <Card.Text as='h6'>৳{product.price}</Card.Text>
+        {/* <Button
+          onClick={addToCartHandler}
+          className='btn-block'
+          type='button'
+          variant="outline-primary"
+          disabled={product.countInStock === 0}
+        >
+          Add To Cart
+        </Button> */}
       </Card.Body>
     </Card>
   )
