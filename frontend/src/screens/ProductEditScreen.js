@@ -20,6 +20,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState(0)
   const [uploading, setUploading] = useState(false)
+  const [isTopListed, setIsTopListed] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -45,6 +46,7 @@ const ProductEditScreen = ({ match, history }) => {
         setCategory(product.category)
         setCountInStock(product.countInStock)
         setDescription(product.description)
+        setIsTopListed(product.isTopListed)
       }
     }
   }, [dispatch, history, productId, product, successUpdate])
@@ -78,7 +80,7 @@ const ProductEditScreen = ({ match, history }) => {
     // update product
     dispatch(updateProduct({
       _id: productId,
-      name, price, image, brand, category, description, countInStock
+      name, price, image, brand, category, description, countInStock, isTopListed
     }))
   }
 
@@ -177,6 +179,15 @@ const ProductEditScreen = ({ match, history }) => {
                   onChange={(e) => setDescription(e.target.value)}
                 >
                 </Form.Control>
+              </Form.Group>
+
+              <Form.Group controlId='description'>
+                <Form.Check
+                  type='checkbox'
+                  label='Is Top Listed'
+                  checked={isTopListed}
+                  onChange={(e) => setIsTopListed(e.target.checked)}
+                ></Form.Check>
               </Form.Group>
 
               <Button type='submit' variant='primary'>
