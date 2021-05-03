@@ -1,0 +1,466 @@
+{
+  "info": {
+    "_postman_id": "4df2dce8-a345-423e-a1bf-ae768af76a4e",
+    "name": "ecommerce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User & Auth",
+      "item": [
+        {
+          "name": "POST /api/users/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"TOKEN\", pm.response.json().token)"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@aa.com\",\n    \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/users/login",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "login"]
+            },
+            "description": "Authenticate user and get token"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/users/profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/users/profile",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "profile"]
+            },
+            "description": "Return logged in user"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"TOKEN\", pm.response.json().token)",
+                  "pm.environment.set(\"email\", pm.response.json().email)"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Rahim Iqbal\",\n    \"email\": \"rahim@ab.com\",\n    \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/users",
+              "host": ["{{url}}"],
+              "path": ["api", "users"]
+            },
+            "description": "Create new user"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/users/profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"admin@aa.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/users/profile",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "profile"]
+            },
+            "description": "Update user profile"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/users",
+              "host": ["{{url}}"],
+              "path": ["api", "users"]
+            },
+            "description": "Get all users. Admin only"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/users/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/users/6066e38dd0fe7274d9112d26",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "6066e38dd0fe7274d9112d26"]
+            },
+            "description": "Delete a user. Admin only"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/users/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/users/605b122cf24c44f357e6f274",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "605b122cf24c44f357e6f274"]
+            },
+            "description": "Get user by ID. Admin only"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/users/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Jane Doooo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/users/605b122cf24c44f357e6f274",
+              "host": ["{{url}}"],
+              "path": ["api", "users", "605b122cf24c44f357e6f274"]
+            },
+            "description": "Update a user by ID"
+          },
+          "response": []
+        }
+      ],
+      "description": "Routes that have to do with managing users and authentication",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "GET /api/products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": ["{{url}}"],
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/products/:id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products/6048945730a3c4e9fdd390d7",
+              "host": ["{{url}}"],
+              "path": ["api", "products", "6048945730a3c4e9fdd390d7"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/products/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products/6078f04bdf799431be13f1d6",
+              "host": ["{{url}}"],
+              "path": ["api", "products", "6078f04bdf799431be13f1d6"]
+            },
+            "description": "Delete product. Admin only"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/products",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/products",
+              "host": ["{{url}}"],
+              "path": ["api", "products"]
+            },
+            "description": "Add new sample product"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/products/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"price\": 0,\n    \"countInStock\": 0,\n    \"name\": \"Sample name 1\",\n    \"image\": \"/images/smaple.jpg\",\n    \"brand\": \"Sample brand\",\n    \"category\": \"Sample category\",\n    \"description\": \"Sample description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/products/6078f04bdf799431be13f1d6",
+              "host": ["{{url}}"],
+              "path": ["api", "products", "6078f04bdf799431be13f1d6"]
+            },
+            "description": "Update a product"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "GET /api/orders/:id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/orders/606f52534808e33bbe5329bc",
+              "host": ["{{url}}"],
+              "path": ["api", "orders", "606f52534808e33bbe5329bc"]
+            },
+            "description": "Get an order by id"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/orders/myOrders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/api/orders/myorders",
+              "host": ["{{url}}"],
+              "path": ["api", "orders", "myorders"]
+            },
+            "description": "Get logged in users orders"
+          },
+          "response": []
+        }
+      ],
+      "description": "Routes that have to do with orders"
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "POST /api/products/:id/reviews",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rating\": 5,\n    \"comment\": \"These are great headphones\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/products/60781d1ffe53fad76f59d30d/reviews",
+              "host": ["{{url}}"],
+              "path": ["api", "products", "60781d1ffe53fad76f59d30d", "reviews"]
+            },
+            "description": "Add new product review"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
