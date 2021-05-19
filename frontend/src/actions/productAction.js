@@ -1,32 +1,43 @@
 import axios from 'axios'
 import * as productConstants from '../constants/productConstants.js'
+import store from '../store'
 
-export const listProduct = (keyword = '', pageNumber = '') => async (dispatch) => {
-  try {
-    dispatch(
-      {
-        type: productConstants.PRODUCT_LIST_REQUEST
-      }
-    )
-    const { data } = await axios.get(
-      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
-    )
+export const listProduct = (keyword = '', pageNumber = '', products = []) => async (dispatch) => {
+  const state = store.getState();
+  const productList = state.productList
+  console.log(productList.length > 0)
+  if (productList.products.length == 0 || (productList.page < pageNumber && pageNumber <= productList.pages)){
+    try {
+      // dispatch(
+      //   {
+      //     type: productConstants.PRODUCT_LIST_REQUEST
+      //   }
+      // )
+      const { data } = await axios.get(
+        `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+      )
 
-    dispatch(
-      {
-        type: productConstants.PRODUCT_LIST_SUCCESS,
-        payload: data
-      }
-    )
-  } catch (error) {
+      //concat new products with previous product list from store
+      data.products = [...productList.products, ...data.products]
+
+      dispatch(
+        {
+          type: productConstants.PRODUCT_LIST_SUCCESS,
+          payload: data
+        }
+      )
+    } catch (error) {
       dispatch(
         {
           type: productConstants.PRODUCT_LIST_FAIL,
           payload: error.response && error.response.data.message ? error.response.data.message : error.message
         }
       )
+    }
   }
+  
 }
+
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {
