@@ -3,7 +3,7 @@ import * as productConstants from '../constants/productConstants.js'
 export const productListReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case productConstants.PRODUCT_LIST_REQUEST:
-      return { loading: true, products: [] }
+      return { loading: false, products: [] }
     case productConstants.PRODUCT_LIST_SUCCESS:
       return { 
         loading: false,
